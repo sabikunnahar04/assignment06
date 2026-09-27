@@ -16,7 +16,15 @@ const MyPlan = () => {
   const currentList: WorkoutItem[] =
     activeTab === "plan" ? planWorkouts : savedWorkouts;
 
- 
+  const totalExercises = currentList.length;
+  const totalMinutes = currentList.reduce(
+    (sum: number, item: WorkoutItem) => sum + (item.duration || 0),
+    0
+  );
+  const totalCalories = currentList.reduce(
+    (sum: number, item: WorkoutItem) => sum + (item.caloriesBurned || 0),
+    0
+  );
 
   return (
     <main className="min-h-screen bg-[#090a0c] text-white px-6 py-10">
@@ -26,6 +34,35 @@ const MyPlan = () => {
           Cap of five lifts for today. Finish them, then load more.
         </p>
 
+       
+        <div className="grid grid-cols-3 bg-[#12141a] border border-zinc-800 rounded-2xl p-6 mb-8 text-left">
+          <div>
+            <span className="text-[11px] text-zinc-500 uppercase tracking-wider block mb-1">
+              Exercises
+            </span>
+            <span className="text-3xl font-extrabold text-[#ccff00]">
+              {totalExercises}
+            </span>
+          </div>
+          <div>
+            <span className="text-[11px] text-zinc-500 uppercase tracking-wider block mb-1">
+              Minutes
+            </span>
+            <span className="text-3xl font-extrabold text-white">
+              {totalMinutes}
+            </span>
+          </div>
+          <div>
+            <span className="text-[11px] text-zinc-500 uppercase tracking-wider block mb-1">
+              Calories
+            </span>
+            <span className="text-3xl font-extrabold text-white">
+              {totalCalories}
+            </span>
+          </div>
+        </div>
+
+        
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center bg-[#12141a] p-1 rounded-xl border border-zinc-800">
             <button

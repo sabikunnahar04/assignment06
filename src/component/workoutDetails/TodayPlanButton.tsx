@@ -9,6 +9,12 @@ const TodayPlanButton = ({ workout }: { workout: WorkoutItem }) => {
 
   const handleAddPlan = () => {
     console.log("add plan btn triggered", workout);
+    const isAlreadyAdded = planWorkouts.some((item) => item.id === workout.id);
+
+    if (isAlreadyAdded) {
+      alert(`⚠️ "${workout.name}" is already in Today's Plan!`);
+      return;
+    }
     setPlanWorkouts([...planWorkouts, workout]);
     alert(`You have added "${workout.name}" to Today's Plan`);
   };
