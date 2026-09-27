@@ -3,6 +3,7 @@
 import { WorkoutContext } from "@/context/WorkoutContext";
 import { WorkoutItem } from "@/component/homepage/Worksout";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 
 const SavedButton = ({ workout }: { workout: WorkoutItem }) => {
   const { savedWorkouts, setSavedWorkouts } = useContext(WorkoutContext);
@@ -12,11 +13,11 @@ const SavedButton = ({ workout }: { workout: WorkoutItem }) => {
     const isAlreadySaved = savedWorkouts.find((item) => item.id === workout.id);
 
     if (isAlreadySaved) {
-      alert(`⚠️ "${workout.name}" is already saved!`);
+      toast.error(`⚠️ "${workout.name}" is already saved!`);
       return;
     }
     setSavedWorkouts([...savedWorkouts, workout]);
-    alert(`You have saved "${workout.name}" for later`);
+    toast.success(`You have saved "${workout.name}" for later`);
   };
 
   return (

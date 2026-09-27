@@ -3,6 +3,7 @@
 import { WorkoutContext } from "@/context/WorkoutContext";
 import { WorkoutItem } from "@/component/homepage/Worksout";
 import React, { useContext } from "react";
+import { toast } from "react-toastify";
 
 const TodayPlanButton = ({ workout }: { workout: WorkoutItem }) => {
   const { planWorkouts, setPlanWorkouts } = useContext(WorkoutContext);
@@ -12,11 +13,11 @@ const TodayPlanButton = ({ workout }: { workout: WorkoutItem }) => {
     const isAlreadyAdded = planWorkouts.find((item) => item.id === workout.id);
 
     if (isAlreadyAdded) {
-      alert(`⚠️ "${workout.name}" is already in Today's Plan!`);
+      toast.success(`⚠️ "${workout.name}" is already in Today's Plan!`);
       return;
     }
     setPlanWorkouts([...planWorkouts, workout]);
-    alert(`You have added "${workout.name}" to Today's Plan`);
+    toast.error(`You have added "${workout.name}" to Today's Plan`);
   };
 
   return (
