@@ -28,7 +28,7 @@ const Banner = () => {
 
             <div className="pt-2">
               <Link
-                href="/apps"
+                href="#library"
                 className="inline-block bg-[#a3e635] hover:bg-[#86efac] text-black font-extrabold text-xs px-6 py-3 rounded-md uppercase  transition-colors"
               >
                 Browse Workouts
