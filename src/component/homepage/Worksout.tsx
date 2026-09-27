@@ -18,7 +18,7 @@ export interface WorkoutItem {
 }
 
 const getWorks = async (): Promise<WorkoutItem[]> => {
-    const res = await fetch("https://api.abcz.workers.dev/api/fitlog");
+    const res = await fetch("https://api.api-store.workers.dev/api/fitlog");
     const data: WorkoutItem[] = await res.json();
     return data;
 };

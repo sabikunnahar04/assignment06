@@ -1,11 +1,15 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { WorkoutItem } from "@/components/homepage/Worksout";
+import { WorkoutItem } from "@/component/homepage/Worksout";
+import TodayPlanButton from "@/component/workoutDetails/TodayPlanButton";
+import SavedButton from "@/component/workoutDetails/SavedButton";
 
-// Dynamic API theke data fetch
+
 async function getSingleWorkout(id: string): Promise<WorkoutItem> {
-  const res = await fetch(`https://api.abcz.workers.dev/api/fitlog/${id}`);
+  const res = await fetch(`https://api.api-store.workers.dev/api/fitlog/${id}`, {
+    cache: "no-store",
+  });
   if (!res.ok) {
     throw new Error("Failed to load workout details");
   }
@@ -17,8 +21,12 @@ export default async function WorkoutDetailPage({
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
-  const workout = await getSingleWorkout(id);
+  const resolvedParams = await params;
+  const workout = await getSingleWorkout(resolvedParams.id);
+
+  if (!workout) {
+    return <div className="text-white text-center py-20">Loading...</div>;
+  }
 
   return (
     <main className="min-h-screen bg-[#090a0c] text-white px-4 py-8">
@@ -31,7 +39,7 @@ export default async function WorkoutDetailPage({
         </Link>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start mt-4">
-          {/* Big Image */}
+          
           <div className="w-full bg-[#12141a] border border-zinc-800 rounded-2xl overflow-hidden aspect-square relative">
             <Image
               src={workout.image}
@@ -42,7 +50,6 @@ export default async function WorkoutDetailPage({
             />
           </div>
 
-         
           <div className="space-y-6">
             <div>
               <h1 className="text-3xl font-black uppercase tracking-tight">
@@ -75,11 +82,17 @@ export default async function WorkoutDetailPage({
               </div>
               <div className="flex justify-between py-2.5">
                 <span className="text-zinc-500 uppercase">Sets & Reps</span>
-                <span className="font-semibold text-zinc-200">{workout.sets} sets × {workout.reps}</span>
+                <span className="font-semibold text-zinc-200">
+                  {workout.sets} sets × {workout.reps}
+                </span>
               </div>
               <div className="flex justify-between py-2.5">
                 <span className="text-zinc-500 uppercase">Duration</span>
                 <span className="font-semibold text-zinc-200">{workout.duration} mins</span>
+              </div>
+              <div className="flex justify-between py-2.5">
+                <span className="text-zinc-500 uppercase">Calories</span>
+                <span className="font-semibold text-zinc-200">{workout.caloriesBurned} kcal</span>
               </div>
               <div className="flex justify-between py-2.5">
                 <span className="text-zinc-500 uppercase">Rating</span>
@@ -96,6 +109,11 @@ export default async function WorkoutDetailPage({
                   <li key={idx}>{step}</li>
                 ))}
               </ol>
+            </div>
+
+            <div className="flex items-center gap-3 pt-4">
+              <TodayPlanButton workout={workout} />
+              <SavedButton workout={workout} />
             </div>
           </div>
         </div>
