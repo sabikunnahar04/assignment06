@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import Logo from "@/assets/logo.png"; 
 import NavCounters from "./NavCounter";
+import NavLinks from "./NavClick";
 
 const Navbar = () => {
   return (
@@ -17,14 +18,9 @@ const Navbar = () => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </label>
-            <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-lg bg-[#12141a] border border-zinc-800 rounded-box w-48 space-y-2">
-              <li>
-                <Link href="/" className="text-zinc-300 hover:text-white">Workouts</Link>
-              </li>
-              <li>
-                <Link href="/my-plan" className="text-zinc-400 hover:text-white">My Plan</Link>
-              </li>
-            </ul>
+            <div tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-3 shadow-lg bg-[#12141a] border border-zinc-800 rounded-box w-48 flex flex-col gap-2">
+              <NavLinks />
+            </div>
           </div>
 
           <Link href="/" className="flex items-center gap-2">
@@ -35,20 +31,9 @@ const Navbar = () => {
           </Link>
         </div>
 
-        
-        <nav className="hidden lg:flex items-center gap-3 text-sm font-medium">
-          <Link
-            href="/"
-            className="bg-[#243315] text-[#a3e635] px-4 py-1.5 rounded-full hover:brightness-110"
-          >
-            Workouts
-          </Link>
-          <Link
-            href="/my-plan"
-            className="text-zinc-400 hover:text-white px-3 py-1.5 transition"
-          >
-            My Plan
-          </Link>
+       
+        <nav className="hidden lg:flex items-center gap-2 text-sm font-medium">
+          <NavLinks />
         </nav>
 
        

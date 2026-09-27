@@ -24,7 +24,7 @@ const TodayPlanButton = ({ workout }: { workout: WorkoutItem }) => {
       onClick={handleAddPlan}
       className="btn btn-primary flex-1 bg-[#ccff00] hover:bg-[#b8e600] text-black font-extrabold text-xs py-3.5 px-4 rounded-lg uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer transition"
     >
-      <span>📁</span> Add to today's plan
+      <span>📁</span> Add to todays plan
     </button>
   );
 };
