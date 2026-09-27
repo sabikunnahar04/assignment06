@@ -8,7 +8,10 @@ const MyPlan = () => {
 
   console.log(planWorkouts, savedWorkouts, "planWorkouts", "savedWorkouts");
 
-  return <div>My Plan workouts</div>;
+  return <div>
+Listed plan | Total plan : {planWorkouts.length} <br /> | Total save {savedWorkouts.length}
+
+  </div>;
 };
 
 export default MyPlan;

@@ -23,8 +23,8 @@ const Navbar = () => {
             Workouts
           </Link>
           <Link
-            href="/apps"
-            className="text-zinc-400 hover:text-white px-3 py-1.5 "
+            href="/my-plan"
+            className="text-zinc-400 hover:text-white px-3 py-1.5 transition"
           >
             My Plan
           </Link>
