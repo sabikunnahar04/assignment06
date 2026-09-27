@@ -13,11 +13,11 @@ const SavedButton = ({ workout }: { workout: WorkoutItem }) => {
     const isAlreadySaved = savedWorkouts.find((item) => item.id === workout.id);
 
     if (isAlreadySaved) {
-      toast.error(`⚠️ "${workout.name}" is already saved!`);
+      toast.success(`⚠️ "${workout.name}" is already saved!`);
       return;
     }
     setSavedWorkouts([...savedWorkouts, workout]);
-    toast.success(`You have saved "${workout.name}" for later`);
+    toast.error(`You have saved "${workout.name}" for later`);
   };
 
   return (

@@ -13,11 +13,11 @@ const TodayPlanButton = ({ workout }: { workout: WorkoutItem }) => {
     const isAlreadyAdded = planWorkouts.find((item) => item.id === workout.id);
 
     if (isAlreadyAdded) {
-      toast.success(`⚠️ "${workout.name}" is already in Today's Plan!`);
+      toast.error(`⚠️ "${workout.name}" is already in Today's Plan!`);
       return;
     }
     setPlanWorkouts([...planWorkouts, workout]);
-    toast.error(`You have added "${workout.name}" to Today's Plan`);
+    toast.success(`You have added "${workout.name}" to Today's Plan`);
   };
 
   return (
